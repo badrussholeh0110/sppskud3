@@ -1,0 +1,126 @@
+{% extends "data/maiin.html" %}
+{% block content %}
+{% load static %}
+<style type="text/css">
+    .right {
+        position: absolute;
+        right: 2%;
+        width: 150px;
+    }
+</style>
+<div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page-header start -->
+            <!-- Page-header end -->
+
+            <!-- Page-body start -->
+            <div class="page-body">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{{judul}}</h4>
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                                <li><i class="icofont icofont-simple-left "></i></li>
+                                <li><i class="icofont icofont-maximize full-card"></i></li>
+                                <li><i class="icofont icofont-minus minimize-card"></i></li>
+                                <li><i class="icofont icofont-refresh reload-card"></i></li>
+                                <li><i class="icofont icofont-error close-card"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-block table-border-style">
+                        <div class="table-responsive">
+                            <a href="{% url 'Tpeternak' %}" class="right btn btn-info btn-skew">Tambah Peternak</a><br><br>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="">NO</th>
+                                        <th width="">USER NAME</th>
+                                        <th width="%">NAMA</th>
+                                        <th width="%">ALAMAT</th>
+                                        <th width="%">UNIT</th>
+                                        <th width="20%">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for peternak in Peternak %}
+                                    <tr>
+                                        <td scope="row">{{forloop.counter}}</td>
+                                        <td>{{ peternak.user__username}}</td>
+                                        <td><a href="{% url 'lihathasil' peternak.id %}">{{ peternak.nama }}</a></td>
+                                        <td>{{peternak.alamat}}</td>
+                                        <td>{{peternak.namaunit__namaunit}}</td>
+                                        <td><a href="{% url 'Uuser' peternak.user__id %}" class="btn btn-warning btn-skew">Ubahuser</a><a href="{% url 'cetakpeter' peternak.id %}" class="btn btn-warning btn-skew">Cetak</a><a href="{% url 'Upeternak' peternak.id %}"
+                                                class="btn btn-success btn-skew">Ubah</a>
+                                            <button type="button" class="btn btn-danger btn-skew" data-toggle="modal"
+                                                data-target="#hapus-{{ peternak.id }}">Hapus</button>
+                                        </td>
+                                    </tr>
+                                    <div class="modal fade" id="hapus-{{ peternak.id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Hapus</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Apakah Anda Yakin ingin menghapus <b>{{ peternak.nama }}</b> ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="#" class="btn btn-secondary btn-skew" data-dismiss="modal"
+                                                        aria-label="close">Tutup</a>
+                                                    <a href="{% url 'Hpeternak' peternak.id %}"
+                                                        class="btn btn-danger btn-skew">Hapus</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <hr />
+                            <!-- <nav>
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item {% if not previous %} disabled {% endif %}">
+                                        <a class="page-link" href="{{ previous }}">Previous</a>
+                                    </li>
+
+                                    {% for n in halaman_siswa.paginator.page_range %}
+                                    {% if halaman_siswa.number == n %}
+                                    <li class="page-item active" aria>
+                                        <span class="page-link">
+                                            {{ n }}
+                                            <span class="sr-only">(current)</span>
+                                        </span>
+                                    </li>
+                                    {% elif n > halaman_siswa.number|add:-3 and n < halaman_siswa.number|add:3 %} <li
+                                        class="page-item"><a class="page-link" href="?halaman={{ n }}">{{ n }}</a></li>
+                                        {% endif %}
+                                        {% endfor %}
+                                        <li class="page-item {% if not next %} disabled {% endif %}">
+                                            <a class="page-link" href="{{ next }}">Next</a>
+                                        </li>
+                                </ul>
+                            </nav> -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Page-body end -->
+        </div>
+    </div>
+    <!-- Main-body end -->
+
+    <div id="styleSelector">
+
+    </div>
+</div>
+
+{% endblock content %}

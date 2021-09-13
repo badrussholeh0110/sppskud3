@@ -1,0 +1,72 @@
+{% load humanize %}
+<html>
+<head>
+    <style>
+        @page { 
+            size: a4 portrait;
+
+            @frame header_frame {
+                /* Static Frame */
+                -pdf-frame-content: header_content;
+                left: 50pt;
+                width: 512pt;
+                top: 50pt;
+                height: 40pt;
+            }
+
+            @frame content_frame {
+                /* Content Frame */
+                left: 50pt;
+                width: 512pt;
+                top: 90pt;
+                height: 632pt;
+            }
+
+            @frame footer_frame {
+                /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 50pt;
+                width: 512pt;
+                top: 772pt;
+                height: 20pt;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2 align="center">Data laporan setoran unit</h2>
+    Nama : {{peternak}} <br>
+    Unit : {{peternak.namaunit.namaunit}}
+<table border="1">
+    <thead>
+        <tr style="height:30px" bgcolor="#00826a">
+            <th width="20%">NO</th>
+            <th>tanggal</th>
+            <th>harga</th>
+            <th>jumlah setoran</th>
+        </tr>   
+    </thead>
+    <tbody>
+    {% for laporan in laporan %}
+    <tr style="height:20px">
+        <td align="center">{{ forloop.counter }}</td>
+        <td align="center">{{laporan.tgl|date:"d-M-Y"}}</td>
+        <td align="center">Rp. {{laporan.harga__harga}}</td>
+        <td align="center">{{laporan.jumlahsetoran}} Liter</td>
+               
+    </tr>
+    {% endfor %}
+    <tr style="height:20px">
+        <td align="center" colspan="3">Total Setoran</td>
+        <td align="center" colspan="1">{{total.jumlahsetoran__sum}} Liter</td>
+    </tr>
+    <tr style="height:20px">
+        <td align="center" colspan="3">Total Hasil</td>
+        <td align="center" colspan="1"><b> Rp. {{tot|intcomma}}</b></td>
+    </tr>
+    </tbody>    
+</table>
+</body>
+
+</html>

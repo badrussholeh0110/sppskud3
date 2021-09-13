@@ -1,0 +1,138 @@
+{% extends "data/main.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">HOME</h1>
+          </div><!-- /.col -->
+          <!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{peternak}} Peternak</h3>
+
+                <p>Jumlah Peternak</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{unit}} Unit</h3>
+
+                <p>jumalah unit</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-android-pin"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{petugas}} Petugas</h3>
+
+                <p>jumlah petugas</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{setoran.jumlahsetoran__sum}} Liter</h3>
+
+                <p>Jumlah Setoran Susu</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-connection-bars"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+
+      <div class="col-md-12 col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Statistik  susu</h5>
+                <div class="card-header-left ">
+                </div>
+                <div class="card-header-right">
+                    <ul class="list-unstyled card-option">
+                        <li><i class="icofont icofont-simple-left "></i></li>
+                        <li><i class="icofont icofont-maximize full-card"></i>
+                        </li>
+                        <li><i class="icofont icofont-minus minimize-card"></i>
+                        </li>
+                        <li><i class="icofont icofont-refresh reload-card"></i>
+                        </li>
+                        <li><i class="icofont icofont-error close-card"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-block">
+                <!-- <div id="statestics-chart" style="height:517px;"></div> -->
+                <div id="container1"></div>
+                <script src="https://code.highcharts.com/highcharts.src.js"></script>
+                <script src="https://code.highcharts.com/highcharts.src.js"></script>
+                <script>
+                    Highcharts.chart('container1', {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'Grafik setoran susu '
+                        },
+                        xAxis: {
+                            categories: [
+                              {% for grafik1 in grafik1 %}'{{grafik1.namaunit__namaunit}}'{% if not forloop.last %}, {% endif %}{% endfor %}
+                            ]
+                        },
+                        series: [{
+                            name: 'Jumlah Susu',
+                            data: [
+                            {% for grafik1 in grafik1 %}{{grafik1.jumlahsetoran_count}}{% if not forloop.last %}, {% endif %}{% endfor %}
+                            ]
+                        }]
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+{% endblock content %}

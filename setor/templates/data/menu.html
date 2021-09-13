@@ -1,0 +1,114 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="{% static 'dist/img/logo2.jpg' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light"> KUD ARGOPURO</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'dist/img/logo2.jpg' %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{request.user}}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="{% url 'home' %}" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                HOME
+                <i class="right fas"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-building"></i>
+              <p>
+                DATA MASTER
+                <i class="right fas"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'petugas' %}" class="nav-link">
+                  <i class="fas fa-user-circle nav-icon"></i>
+                  <p>PETUGAS</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'unit' %}" class="nav-link">
+                  <i class="fas fa-hotel nav-icon"></i>
+                  <p>UNIT</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'peternak' %}" class="nav-link">
+                  <i class="fas fa-user-circle nav-icon"></i>
+                  <p>PETERNAK</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'harga' %}" class="nav-link">
+                  <i class="	fas fa-comment-dollar nav-icon"></i>
+                  <p>HARGA</p>
+                </a>
+              </li>
+              <!-- <li class="nav-item">
+                <a href="{% url 'setoran' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>SETORAN</p>
+                </a>
+              </li> -->
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-pen-square"></i>
+              <p>
+               TRANSAKSI
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="{% url 'setoran' %}" class="nav-link">
+                  <i class="fas fa-folder-plus nav-icon"></i>
+                  <p>SETORAN</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'logout' %}" class="nav-link">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                LOG OUT
+                <i class="right fas"></i>
+              </p>
+            </a>
+          </li>
+         
+         
+          
+          
+          
+        
+        </ul>
+        
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
